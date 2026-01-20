@@ -1,0 +1,38 @@
+<view class="Box">
+  <view class="box">
+    <view class="box1">
+      <view class="title">最新测试</view>
+      <view class="date">{{user.recentTestDate? user.recentTestDate : '当前未完成测试'}}</view>
+    </view>
+    <view class="box2">
+      {{user.score}}
+    </view>
+  </view>
+  <view class="box3">
+    <view class="times">
+        <view class="text-title">总测试次数</view>
+        <view class="text-times">{{times}}次</view>
+    </view>
+    <view class="score">
+      <view class="text-title">测试平均分</view>
+      <view class="text-score">{{avgScore?avgScore:0}}分</view>
+    </view>
+  </view>
+</view>
+
+<view class="test-title">
+  测试记录
+</view>
+<view class="no-activity" hidden="{{user.testTimes !== 0}}">
+  <text style="color: #666; margin-top: 50rpx;margin-left: 300rpx;">暂无测试</text>
+</view>
+
+<view wx:for="{{testList}}" wx:key="id" bindtap="handleTestClick" data-id="{{item.id}}">
+  <myTest
+    time="{{item.formattedStartTime}}"
+    total="{{item.num}}"
+    done="{{item.endTime ? item.time+'分钟' : '未完成'}}"
+    continue="{{item.endTime ? '测试详细' :'继续测试' }}"
+    accuracy="{{item.avgScore}}"
+  ></myTest>
+</view>

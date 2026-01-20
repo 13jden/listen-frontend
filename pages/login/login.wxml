@@ -1,0 +1,85 @@
+<view class="header">
+    <image class="image1" src="/image/ZJU.jpg" mode=""/>
+    <view class="header-text">浙江大学听力健康中心</view>
+    <image class="image2" src="/image/check.png" mode=""/>
+  </view>
+<view class="back1" >
+  <view>
+    <image class="image" src="/image/headset.png"/>
+  </view>
+  <view class="text1">听力测试小程序</view>
+  <view class="text">V-1.0</view>
+</view>
+
+<view class="container">
+  <!-- 授权登录按钮 -->
+  <button bindtap="wxLogin" class="auth-button">微信授权登录</button>
+
+  <!-- 注册表单弹窗 -->
+  <view>
+    <!-- 模糊背景 -->
+    <view class="modal-bg" wx:if="{{showRegisterForm}}" bindtap="closeRegisterForm"></view>
+
+    <!-- 弹窗内容 -->
+    <view class="modal {{showRegisterForm ? 'modal-show' : 'modal-hide'}}">
+      <view class="modal-header">
+        <text>填写注册信息</text>
+      </view>
+      <view class="modal-body">
+        <!-- 手机号 -->
+        <view class="form-item">
+          <text>手机号：</text>
+          <input
+            class="input"
+            placeholder="请输入手机号"
+            name="number"
+            bindinput="onPhoneInput"
+          />
+        </view>
+
+        <!-- 姓名 -->
+        <view class="form-item">
+          <text>姓名：</text>
+          <input
+            class="input"
+            placeholder="请输入姓名"
+            name="name"
+            bindinput="onNameInput"
+          />
+        </view>
+
+        <!-- 医院选择 -->
+        <view class="form-item">
+          <text>医院：</text>
+          <picker
+            mode="selector"
+            range="{{hospitalList}}"
+            range-key="name"
+            bindchange="onHospitalChange"
+          >
+            <view class="picker">
+              {{selectedHospitalName}}
+            </view>
+          </picker>
+        </view>
+
+        <!-- 医疗 ID -->
+        <view class="form-item">
+          <text>医疗 ID：</text>
+          <input
+            class="input"
+            placeholder="请输入医疗 ID"
+            name="medicalId"
+            bindinput="onMedicalIdInput"
+          />
+        </view>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="modal-footer">
+        <button class="cancel-button" bindtap="closeRegisterForm">取消</button>
+        <button class="submit-button" bindtap="onSubmitRegisterForm" formType="submit">提交</button>
+      </view>
+    </view>
+  </view>
+</view>

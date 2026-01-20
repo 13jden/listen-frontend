@@ -1,0 +1,228 @@
+page {
+  background-color: #f7f8fa;
+  font-family: sans-serif;
+  overflow-y: scroll;
+}
+.header{
+  margin-top: 20rpx;
+  height: 150rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20rpx;
+  font-size: 38rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.04);
+}
+.image1{
+    width: 70rpx;
+    height: 70rpx;
+    margin-left: 20rpx;
+  }
+.image2{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.container {
+  padding: 20rpx;
+}
+.Box{
+  display: flex;
+  padding: 20rpx;
+}
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content:  flex-start;
+  text-align: left;
+  margin-top: 50rpx;
+  margin-left: 40rpx;
+}
+
+.section-title {
+  font-size: 43rpx;
+  font-weight: 550;
+  margin-top: 10rpx;
+}
+.section-text {
+  margin-top: 30rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.section-desc {
+  color: #666;
+  font-size: 26rpx;
+}
+
+
+.section-blue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: 450rpx;
+  width: 300rpx;
+  border-radius: 30rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #e8f4ff, #f2f8fe);
+}
+
+.icon{
+  display: flex;
+}
+
+.ear{
+  margin-top: 60rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 20rpx;
+  margin-left: 20rpx;
+  background-color: #d5e9ff;
+  border-radius: 50%;
+}
+.next{
+  position: relative;
+  left: 480rpx;
+  width: 60rpx;
+  height: 50rpx;
+}
+.section-title-1 {
+  font-size: 40rpx;
+  font-weight:550;
+  margin-top: 40rpx;
+}
+
+.section-desc-1 {
+  color: #666;
+  font-size: 26rpx;
+  margin-top: 40rpx;
+}
+
+.box{
+  margin-top: 35rpx;
+  display: flex;
+}
+.box-text{
+  margin-left: 20rpx;
+  color: #666;
+  font-size: 25rpx;
+}
+
+.time{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.section-green {
+  display: flex;
+  flex-direction: column;
+  justify-content:  flex-start;
+  align-items: center;
+  text-align: left;
+  margin-top: 30rpx;
+  margin-right: 20rpx;
+  width: 300rpx;
+  height: 450rpx;
+  border-radius: 30rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #e8fff4, #f3fff9);
+}
+.grade{
+  margin-top: 60rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 20rpx;
+  margin-left: 20rpx;
+  background-color:#d5f8e4;
+  border-radius: 50%;
+}
+.grade-text{
+  margin-top:35rpx;
+  background-color: #dbf8e6;
+  color: #49cd6b;
+  border-radius: 30rpx;
+  font-size: 25rpx;
+  height: 30rpx;
+  padding: 10rpx;
+  width: 100rpx;
+}
+
+.tips {
+  display: flex; 
+  white-space: nowrap;
+  margin-top: 30rpx;
+}
+/* 在对应的 wxss 文件中 */
+.tip-box {
+  display: inline-block;
+  width: 400rpx;
+  margin-right: 20rpx;
+  border-radius: 20rpx;
+  background-color: white;
+  padding: 20rpx; 
+  box-sizing: border-box; 
+  text-align: left;
+  margin-bottom: 30rpx;
+}
+
+.icon-2 {
+  width: 80rpx; 
+  height: 80rpx;
+  display: block; 
+  margin-bottom: 20rpx; 
+}
+
+.tip-title {
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.tip-text {
+  margin-top: 20rpx;
+  font-size: 28rpx; 
+  color: #666;
+  line-height: 1.5; 
+}
+
+.finish{
+  width: 95%;
+  margin-left: 10rpx;
+  margin-top: 30rpx;
+  background-color:rgba(240, 247, 254, 0.7);
+  height: 100rpx;
+  display: flex;
+  padding: 20rpx;
+}
+.finish-image{
+  width: 70rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+  background-color: white;
+  padding: 10rpx;
+  border-radius: 50%;
+}
+.finish-box{
+  width: 100%;
+  display: flex;
+  margin-left: 30rpx;
+  flex-direction: column;
+}
+.finish-title{
+  font-size: 30rpx;
+  font-weight: 500;
+}
+.finish-time{
+  font-size: 25rpx;
+  color: #666;
+}

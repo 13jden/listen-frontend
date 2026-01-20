@@ -1,0 +1,90 @@
+.container {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.content {
+  width: 100%;
+  background-color: #f8f9fc;
+  padding: 30rpx;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.section-text {
+  font-size: 26rpx;
+  color: #444;
+  line-height: 40rpx;
+}
+
+.list-item {
+  font-size: 26rpx;
+  color: #444;
+  padding-left: 20rpx;
+  margin: 5rpx 0;
+}
+
+.agreement {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.checkbox-label {
+  font-size: 26rpx;
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: #007aff;
+  font-size: 26rpx;
+  margin: 0 5rpx;
+}
+
+.start-button {
+  width: 90%;
+  height: 80rpx;
+  font-size: 30rpx;
+  background-color: #007aff;
+  color: white;
+  border-radius: 10rpx;
+}
+
+.start-button:disabled {
+  background-color: #ccc;
+}
+
+.footer {
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 20rpx;
+}

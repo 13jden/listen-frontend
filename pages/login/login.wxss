@@ -1,0 +1,207 @@
+/* 页面容器 */
+.container {
+  padding:20px;
+  text-align: center;
+}
+
+.header{
+  margin-top: 20rpx;
+  height: 150rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20rpx;
+  font-size: 38rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.04);
+}
+.image1{
+    width: 80rpx;
+    height: 80rpx;
+    margin-left: 20rpx;
+  }
+.image2{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+
+.back1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:   #f8f8f8;
+  width: 100%;
+  height: 450rpx;
+}
+.image{
+    border-radius: 20rpx;
+    background-color:#00a8ff ;
+    margin-top: 80rpx ;
+    width: 150rpx;
+    height: 150rpx;
+    padding:10rpx;
+  }
+
+.text{
+  margin-top: 20rpx;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+.text1{
+  margin-top: 20rpx;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  font-size: large;
+}
+/* 授权登录按钮 */
+.auth-button {
+  margin-top: 150rpx;
+  width: 95%;
+  background: #07c160;
+  color: white;
+  border-radius: 50px;
+  font-size: 16px;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(81, 215, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.auth-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(81, 215, 255, 0.3);
+}
+
+/* 模糊背景 */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* 弹窗 */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 弹窗头部 */
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 弹窗内容 */
+.modal-body {
+  padding: 20px;
+}
+
+/* 表单项 */
+.form-item {
+  margin-bottom: 20px;
+}
+
+.form-item text {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.form-item .input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form-item .input:focus {
+  border-color: #07c160;
+  outline: none;
+}
+
+/* 医院选择器 */
+.picker {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.picker:active {
+  background-color: #f0f0f0;
+}
+
+/* 弹窗底部 */
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* 取消按钮 */
+.cancel-button {
+  flex: 1;
+  margin-right: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:active {
+  background-color: #e0e0e0;
+}
+
+/* 提交按钮 */
+.submit-button {
+  flex: 1;
+  margin-left: 8px;
+  background: linear-gradient(135deg, #07c160, #05a050);
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.submit-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(7, 193, 96, 0.3);
+}

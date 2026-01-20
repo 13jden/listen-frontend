@@ -1,0 +1,172 @@
+/* 页面整体 */
+.container {
+  padding: 20rpx;
+  background-color: #f6f8fa;
+  min-height:60vh;
+}
+
+/* 个人信息 */
+.user-section {
+  position: relative;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  width: 100%;
+}
+
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  background-color: #e5f1ff;
+  padding: 10rpx;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50rpx;
+}
+.username {
+  font-size: 35rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.welcome {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 5rpx;
+}
+
+/* 信息卡片 */
+.info-card {
+  position: relative;
+  top: -10rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  height: 0rpx;
+  width: 95%;
+  padding: 30rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+  /* box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05); */
+  margin-bottom: 0rpx;
+}
+.info-card {
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+
+.info-item {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.icon {
+  width: 50rpx;
+  font-size: 32rpx;
+}
+
+.label {
+  margin-left: 20rpx;
+  flex: 1;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.value {
+  font-size: 30rpx;
+  color: #333;
+}
+
+
+.stats {
+  margin-top:20rpx;
+  display: flex; /* 使用 flex 布局 */
+  white-space: nowrap; /* 防止内容换行 */
+  padding: 20rpx 0; /* 上下内边距 */
+}
+
+.stat-item {
+  display: inline-flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  width: 200rpx;
+  margin-right: 20rpx; 
+  background-color: white; 
+  border-radius: 20rpx; 
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.icon-2 {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 20rpx; 
+}
+
+/* 数值样式 */
+.stat-value {
+  font-size: 36rpx; 
+  font-weight: bold;
+  color: #333; 
+  margin-bottom: 10rpx; 
+}
+
+.stat-value-2 {
+  font-size: 28rpx; 
+  padding: 6rpx;
+  font-weight: bold;
+  color: #333; 
+  margin-bottom: 10rpx; 
+}
+
+/* 标签样式 */
+.stat-label {
+  font-size: 28rpx; /* 标签字体大小 */
+  color: #666; /* 文字颜色 */
+  text-align: center; /* 文字居中 */
+}
+
+/* 功能菜单 */
+.menu {
+  margin-top: -0rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 10rpx;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 25rpx;
+}
+
+.text {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: #999;
+}
+
+.footer {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 40rpx;
+}

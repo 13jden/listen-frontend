@@ -1,0 +1,74 @@
+<view class="container">
+  <!-- 进度条 -->
+  <view class="progress-container">
+    <canvas canvas-id="progressCircle" class="progress-circle"></canvas>
+    <view class="progress-text">{{currentIndex+1}} / {{num}}</view>
+  </view>
+  <view class="button-back">  
+      <!-- 播放音频按钮 -->
+      <image 
+        src="{{isPlaying ? '/image/stop.png' : '/image/audio.png'}}" 
+        mode="aspectFit" 
+        class="play-button" 
+        bindtap="playAudio"
+      />
+      <view class="button-text {{currentStep === 1 ? 'active-text' : ''}}">
+        {{
+          isPlaying 
+            ? (currentIndex > 2 ? '正在播放音频' : '正在播放音频，请调整音量') 
+            : (currentStep === 1 ? '请点击播放测试音频' : '点击播放测试音频')
+        }}
+      </view>
+  </view>
+  <view class="button-back">
+      <view class="recording-container">
+      <image 
+        class="record"
+        src="{{isRecording ? '/image/recording.png' : '/image/record.png'}}" 
+        mode="aspectFit"
+        bindtouchstart="startRecording"
+        bindtouchend="stopRecording"
+        bindtouchmove="cancelRecording"
+      />
+      <view class="button-text {{currentStep === 2 ? 'active-text' : ''}}">
+        {{
+          currentIndex > 2 
+            ? '长按开始复述' 
+            : (isRecording 
+                ? '正在录音，松开自动结束' 
+                : (currentStep === 2 ? '长按按钮复述内容(松开自动结束)' : '长按开始复述'))
+        }}
+      </view>
+    </view>
+  </view>  
+  <view class="button-back-2" >
+    <view class="recording-result" hidden="{{!questions[currentIndex].testAudioPath}}">{{questions[currentIndex].score}}</view>
+    <view class="button-text {{currentStep === 3 ? 'active-text-2' : ''}}">本题得分</view>
+    <view class="button-text-2" hidden="{{questions[currentIndex].testAudioPath}}">复述后显示分数</view>
+  </view>
+
+  <view class="navigation">
+    <button class="back" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
+    <button 
+      class="next" 
+      bindtap="{{currentIndex === num - 1 ? 'submitAnswers' : 'nextQuestion'}}" 
+    >
+      {{currentIndex === num - 1 ? '提交答案' : '下一题'}}
+    </button>
+  </view>
+  <!-- <button
+    class="submit-button"
+    bindtap="submitAnswers"
+    wx:if="{{currentIndex === num-1}}"
+  >提交答案</button> -->
+  <view class="textBox">
+    测试说明
+    <view class="text">1.点击播放按钮,仔细聆听测试音频</view>
+    <view class="text">2.按下录音按钮,复述听到的内容，松开完成录音</view>
+    <view class="text">3.系统将自动评估您的复述情况，给出分数</view>
+  </view>
+
+
+  <!-- 提交按钮（仅在最后一题显示） -->
+
+</view>

@@ -1,0 +1,23 @@
+<view class="container">
+  <!-- 顶部：总体成绩 -->
+  <view class="header">
+    <view class="total-score">
+      <text class="score-text">总体成绩</text>
+      <text class="score-value">{{score}}</text>
+    </view>
+  </view>
+
+  <!-- 底部：每道题的分数 -->
+  <view class="question-grid">
+    <view 
+      wx:for="{{questions}}" 
+      wx:key="index" 
+      bindtap="navigateToQuestion" 
+      data-index="{{item.index}}"
+      class="question-item"
+    >
+      <text class="question-index">第{{item.index}}题</text>
+      <text class="question-score">{{item.score}}分</text>
+    </view>
+  </view>
+</view>

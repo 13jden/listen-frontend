@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="title">隐私保护告知</view>
+  <view class="subtitle">请仔细阅读以下内容</view>
+  
+
+  <view class="content">
+    <view class="section">
+      <view class="section-title">听力测试数据收集</view>
+      <view class="section-text">
+        我们将收集您在听力测试过程中相关数据，包括但不限于测试结果、测试时间等信息。
+        这些数据将用于评估您的听力状况并提供个性化建议。
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">数据使用说明</view>
+      <view class="section-text">
+        您的测试数据将被安全存储并严格保密。我们仅将这些数据用于：
+        <view class="list-item">• 提供听力测试结果分析</view>
+        <view class="list-item">• 改进我们的测试服务</view>
+        <view class="list-item">• 进行必要的医疗咨询（经您同意的情况下）</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">用户权益保护</view>
+      <view class="section-text">
+        您有权随时查看、导出或删除您的测试数据。我们承诺采取严格的安全措施保护您的隐私信息，未经您的明确同意，不会向任何第三方披露您的个人信息。
+      </view>
+    </view>
+  </view>
+
+  <view class="agreement">
+    <checkbox-group bindchange="onAgreementChange">
+      <label class="checkbox-label">
+        <checkbox value="agree" /> 我已阅读并同意
+      </label>
+    </checkbox-group>
+    <text class="link">《用户协议》</text> 和
+    <text class="link">《隐私政策》</text>
+  </view>
+
+  <button class="start-button" bindtap="startTest" disabled="{{!isAgreed}}">开始测试</button>
+  
+  <view class="footer">请确保在安静的环境下进行测试</view>
+</view>

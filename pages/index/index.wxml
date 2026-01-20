@@ -1,0 +1,67 @@
+
+  <view class="header">
+    <image class="image1" src="/image/headset.png" 
+    style="background-color:#2c7fff ; border-radius: 10rpx; margin-left: 20rpx;"
+    mode=""/>
+    <view class="header-text">听力健康小程序</view>
+    <image class="image2" src="/image/check.png" mode=""/>
+  </view>
+  
+  <view class="text">
+    <image class="image1" src="/image/ZJU.jpg"
+    style="width: 100rpx;height: 100rpx; margin:20rpx; margin-top: 10rpx;border-radius: 50%;"
+     mode=""/>
+    <text class="section-title">浙江大学听力健康中心</text>
+    <text class="section-text">专业听力检测与跟踪</text>
+  </view>
+  
+<view class="container">
+  <view class="Box">
+  <view class="section-blue" bind:tap="listen">
+    <view class="icon">
+      <image src="/image/ear.png" class="ear" ></image>
+    </view>
+      <text class="section-title-1" >听力测试</text>
+      <text class="section-desc-1">快速检测您的听力状况</text>
+      <view class="box">
+        <image src="/image/time.png" mode="" class="time"/>
+        <text class="box-text">约需10分钟</text>
+      </view>
+  </view>
+  <view class="section-green" bind:tap="myTest">
+    <view class="icon">
+      <image class="grade" src="/image/grade.png"></image>
+    </view>
+      <text class="section-title-1">测试记录</text>
+      <text class="section-desc-1">查看历史测试记录</text>
+        <text class="grade-text">{{user.testTimes==null?0:user.testTimes}}份报告</text>
+  </view>
+</view>
+  <!-- <text class="section-title">听力保健小贴士</text>
+  <scroll-view class="tips" scroll-x style="white-space: nowrap; width: 100%;">
+    <view class="tip-box">
+      <image class="icon-2" src="/image/protect.png"></image>
+      <text class="tip-title">保护听力</text>
+      <text class="tip-text">避免长时间暴露在噪音环境中</text>
+    </view>
+    <view class="tip-box">
+      <image class="icon-2" src="/image/check.png"></image>
+      <text class="tip-title">定期检查</text>
+      <text class="tip-text">建议每半年进行一次听力检查</text>
+    </view>
+</scroll-view> -->
+  <text class="section-title">最近活动</text>
+
+<view class="finish" hidden="{{!user.recentTestDate}}">
+  <image class="finish-image" src="/image/finish.png" mode=""/>
+  <view class="finish-box">
+    <text class="finish-title">测试完成</text>
+    <text class="finish-time">{{user.recentTestDate}}</text>
+  </view>
+</view>
+
+<view class="no-activity" hidden="{{user.recentTestDate}}">
+  <text style="color: #666; margin-top: 50rpx;">暂无活动</text>
+</view>
+
+</view>

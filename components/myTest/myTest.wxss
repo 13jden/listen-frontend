@@ -1,0 +1,110 @@
+/* 页面整体 */
+.container {
+  margin-top: 20rpx;
+  margin-left: 15rpx;
+  padding: 30rpx;
+  background-color: #ffffff;
+  width: 88%;
+  border-radius: 20rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+
+/* 日期时间 */
+.header {
+  color: #666;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.date{
+  margin-left: 15rpx;
+  width: 380rpx;
+  line-height: 1.5;
+}
+
+/* 分数 */
+.score-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin-top: 20rpx;
+  text-align: right;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 右对齐整个块 */
+  width: 100%;
+}
+
+
+.score {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.score-label {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #007aff;
+  margin-left: 5rpx;
+}
+
+.full-score {
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 10rpx;
+}
+
+/* 统计信息 */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
+.stat-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding:0 50rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.value {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 5rpx;
+}
+
+/* 成绩趋势 */
+.trend {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  color: #007aff;
+}
+
+.icon {
+  font-size: 30rpx;
+  margin-right: 10rpx;
+}
+
+.trend-text {
+  flex: 1;
+}
+
+.arrow {
+  font-size: 32rpx;
+}

@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="header">
+    <text class="test-time">第{{currentQuestion.index}}题</text>
+  
+    <text class="score">{{currentQuestion.score}}</text>
+    <text class="test-time">测试完成时间：{{currentQuestion.testTime}}</text>
+  </view>
+  
+  <view class="record-section">
+    <text class="title">标准录音</text>
+    <view class="audio-box">
+      <audio src="{{currentQuestion.audioPath}}" poster="/image/admin.png" name="测试标准音频" controls author=""></audio>
+    </view>
+  </view>
+  
+  <view class="record-section">
+    <text class="title">你的录音</text>
+    <view class="audio-box">
+      <audio src="{{currentQuestion.testAudioPath}}" controls poster="/image/user_poster.png" name="用户音频" author=""></audio>
+    </view>
+  </view>
+  
+  <view class="text-section1">
+    <text class="text-title">正确文本:</text>
+    <text class="correct-text">{{currentQuestion.testText}}</text>
+  </view>
+  
+  <view class="text-section2">
+    <text class="text-title">您的语音识别文本:</text>
+    <text class="user-text">{{currentQuestion.userText}}</text>
+  </view>
+
+  <view class="navigation">
+    <button class="back" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
+    <button class="next" bindtap="nextQuestion" disabled="{{currentIndex === 32}}">下一题</button>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+
+  "usingComponents": {
+    "myTest":"/components/myTest/myTest"
+  },
+  "navigationBarTitleText": "我的测试报告"
+
+}

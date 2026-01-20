@@ -1,0 +1,73 @@
+.Box{
+  width: 98%;
+  height: 380rpx;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+.box{
+  display: flex;
+  align-items:center;
+}
+.box1{
+  height: 100rpx;
+}
+.title{
+  margin: 20rpx;
+  margin-left: 40rpx;
+  font-size: 45rpx;
+}
+.date{
+  margin: 20rpx;
+  margin-left: 40rpx;
+}
+
+
+.box2{
+  background-color: #007aff;
+  color: white;
+  border-radius: 50%;
+  height: 120rpx;
+  width: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+  margin-left: 320rpx;
+  margin-top: 20rpx;
+  font-weight: 600;
+}
+
+.box3{
+  margin-top: 30rpx;
+  display: flex;
+  padding: 20rpx;
+}
+.times,.score{
+  background-color: #f8f9fa;
+  border-radius: 20rpx;
+  margin: 20rpx;
+  width: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 20rpx;
+}
+.text-title{
+  font-size: 30rpx;
+  color: #666;
+  margin: 20rpx;
+}
+.text-times,.text-score{
+  margin-left: 20rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  
+}
+.test-title{
+  font-size: 23px;
+  color: #222;
+  margin: 30rpx;
+}

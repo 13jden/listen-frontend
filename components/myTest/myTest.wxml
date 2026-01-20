@@ -1,0 +1,36 @@
+<view class="container">
+  <!-- 日期时间 -->
+  <view class="header">
+    <text class="date">{{time}}</text>
+
+  <!-- 分数显示 -->
+  <view class="score-container">
+    <view class="score-section">
+        <text class="score">{{accuracy}}分</text>
+        <text class="full-score">满分100分</text>
+      </view>
+  </view>
+    
+  </view>
+  <!-- 统计信息 -->
+  <view class="stats">
+    <view class="stat-item">
+      <text class="label">答题数量</text>
+      <text class="value">{{total}}题</text>
+    </view>
+    <view class="stat-item">
+      <text class="label">正确率</text>
+      <text class="value">{{accuracy}}</text>
+    </view>
+    <view class="stat-item">
+      <text class="label">用时</text>
+      <text class="value">{{done}}</text>
+    </view>
+  </view>
+
+  <!-- 成绩趋势 -->
+  <view class="trend">
+    <text class="trend-text">{{continue}}</text>
+    <text class="arrow">›</text>
+  </view>
+</view>

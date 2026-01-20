@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 个人信息 -->
+  <view class="user-section" bindtap="toggleExpand">
+    <image class="avatar" src="/image/user.png"></image>
+    <view class="box">
+      <text class="username">{{name}}</text>
+      <text class="welcome">欢迎使用听力测试</text>
+    </view>
+  </view>
+
+
+
+  <!-- 功能列表 -->
+  <view class="menu">
+    <view class="menu-item">
+      <text class="icon">ℹ️</text>
+      <text class="text">关于我们</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item">
+      <text class="icon">ℹ️</text>
+      <text class="text">隐私保护</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item">
+      <text class="icon">ℹ️</text>
+      <text class="text">项目介绍</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="toggleExpand">
+      <text class="icon">ℹ️</text>
+      <text class="text">个人信息</text>
+      <text class="arrow">{{isExpanded ? '⌄' : '›'}}</text>
+    </view>
+
+      <!-- 个人信息卡片（可展开） -->
+  <view class="info-card" wx:if="{{isExpanded}}" animation="{{animationData}}">
+    <view class="info-title"></view>
+    <view class="info-item">
+      <image class="icon" src="/image/user-2.png" style="width: 40rpx; height: 40rpx; margin-right: 10rpx;" />
+      <text class="label">姓名</text>
+      <text class="value">{{name}}</text>
+    </view>
+    <view class="info-item">
+      <image class="icon" src="/image/phone.png" style="width: 50rpx; height:55rpx;" />
+      <text class="label">手机号</text>
+      <text class="value">{{phone}}</text>
+    </view>
+    <view class="info-item">
+      <image class="icon" src="/image/book.png" style="width: 50rpx; height: 50rpx;" />
+      <text class="label">病历号</text>
+      <text class="value">{{medicalRecordNumber}}</text>
+    </view>
+    <view class="info-item">
+      <image class="icon" src="/image/hospital.png" style="width: 50rpx; height: 50rpx;" />
+      <text class="label">就诊医院</text>
+      <text class="value">{{hospital}}</text>
+    </view>
+  </view>
+  </view>
+
+
+  <!-- 统计信息 -->
+  <scroll-view class="stats" scroll-x style="white-space: nowrap; width: 100%;">
+    <view class="stat-item" bind:tap="myTest">
+      <image class="icon-2" src="/image/protect.png" ></image>
+      <text class="stat-value">{{times}}</text>
+      <text class="stat-label">听力测试次数</text>
+    </view>
+    <view class="stat-item" bind:tap="myTest">
+      <image class="icon-2" src="/image/check.png" ></image>
+      <text class="stat-value-2">{{date ? date : '未完成'}}</text>
+      <text class="stat-label">最近测试日期</text>
+    </view>
+    <view class="stat-item" bind:tap="myTest">
+      <image class="icon-2" src="/image/check.png" ></image>
+      <text class="stat-value">{{score}}</text>
+      <text class="stat-label">最近测试平均分</text>
+    </view>
+</scroll-view>
+
+  <!-- 版本信息 -->
+  <view class="footer">
+    当前版本 v1.0.0
+  </view>
+</view>

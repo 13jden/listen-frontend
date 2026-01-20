@@ -1,0 +1,72 @@
+ 
+ <view class="header-box">
+    <view class="text">
+      <text class="section-title">听力测试示范</text>
+      <text class="section-text">按提示完成三步操作，并调节为合适的音量</text>
+    </view>
+    <view class="go" hidden="{{currentStep===3}}" bind:tap="goListen">
+      跳过
+    </view>
+ </view>
+  
+<view class="container">
+
+
+
+  <!-- 进度条 -->
+  <view class="steps" data-step="{{currentStep}}">
+  <!-- 步骤 1 -->
+  <view class="step-container">
+    <view class="step {{currentStep >= 1 ? 'active' : ''}}">1</view>
+    <text class="step-text">听音频</text>
+  </view>
+  
+  <!-- 步骤 2 -->
+  <view class="step-container">
+    <view class="step {{currentStep >= 2 ? 'active' : ''}}">2</view>
+    <text class="step-text">复述</text>
+  </view>
+  
+  <!-- 步骤 3 -->
+  <view class="step-container">
+    <view class="step {{currentStep >= 3 ? 'active' : ''}}">3</view>
+    <text class="step-text">查看结果</text>
+  </view>
+</view>
+
+  <view class="button-back">  
+      <!-- 播放音频按钮 -->
+      <image 
+        src="{{isPlaying ? '/image/stop.png' : '/image/audio.png'}}" 
+        mode="aspectFit" 
+        class="play-button" 
+        bindtap="playAudio"
+      />
+      <view class="button-text {{currentStep === 1 ? 'active-text' : ''}}">
+        {{isPlaying ? '正在播放音频，请调整音量' : (currentStep === 1 ? '请点击播放测试音频' : '点击播放测试音频')}}
+  </view>
+  </view>
+  <view class="button-back-3">
+      <view class="recording-container">
+      <image 
+        class="record"
+        src="{{isRecording ? '/image/recording.png' : '/image/record.png'}}" 
+        mode="aspectFit"
+        bindtouchstart="startRecording"
+        bindtouchend="stopRecording"
+        bindtouchmove="cancelRecording"
+      />
+      <view class="button-text {{currentStep === 2 ? 'active-text' : ''}}">
+        {{isRecording ?  '正在录音，请复述': (currentStep === 2 ? '请长按按钮,复述内容(松开自动结束录音)' : '长按开始复述')}}
+      </view>
+    </view>
+  </view>  
+  <view class="button-back-2">
+    <view class="recording-result" hidden="{{score==0}}">{{score}}</view>
+    <view class="text-2 {{currentStep === 3 ? 'active-text-2' : ''}}">本题得分</view>
+    <view class="button-text-2" hidden="{{score!=0}}">复述后显示分数</view>
+  </view>
+  <view class="finish" hidden="{{!(currentStep===3)}}" bind:tap="goListen">
+      正式测试
+    </view>
+</view>
