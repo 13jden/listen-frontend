@@ -1,0 +1,72 @@
+<view class="container">
+  <!-- 报告信息提示（固定显示） -->
+  <view class="report-info" wx:if="{{reportId && reportDate}}">
+    <image class="report-info-icon" src="/image/report.png"></image>
+    <text class="report-info-text">报告日期：{{reportDate}}</text>
+  </view>
+
+  <!-- 快捷问题区域 -->
+  <view class="quick-questions" wx:if="{{!messages.length}}">
+    <view class="quick-title">请问我一些问题</view>
+    <view class="question-tags">
+      <view class="tag" bindtap="sendQuickQuestion" data-question="我的听力下降了吗？">我的听力下降了吗？</view>
+      <view class="tag" bindtap="sendQuickQuestion" data-question="如何保护听力？">如何保护听力？</view>
+      <view class="tag" bindtap="sendQuickQuestion" data-question="听力不好怎么办？">听力不好怎么办？</view>
+      <view class="tag" bindtap="sendQuickQuestion" data-question="听力测试有什么用？">听力测试有什么用？</view>
+      <view class="tag" bindtap="sendQuickQuestion" data-question="耳朵经常嗡嗡响正常吗？">耳朵经常嗡嗡响正常吗？</view>
+      <view class="tag" bindtap="sendQuickQuestion" data-question="如何预防老年耳聋？">如何预防老年耳聋？</view>
+    </view>
+  </view>
+
+  <!-- 对话区域 -->
+  <scroll-view class="chat-area" scroll-y scroll-into-view="{{scrollIntoView}}" wx:if="{{messages.length}}">
+    <view wx:for="{{messages}}" wx:key="id" id="{{'msg-' + index}}" class="message-item {{item.role === 'user' ? 'user-msg' : 'ai-msg'}}">
+      <!-- AI头像 -->
+      <image wx:if="{{item.role === 'assistant'}}" class="avatar ai-avatar" src="/image/ai-robot.png"></image>
+
+      <view class="message-content">
+        <view class="message-text">{{item.content}}</view>
+        <!-- 语音播放按钮 -->
+        <view wx:if="{{item.role === 'assistant' && item.content}}" class="audio-btn" bindtap="playAudio" data-text="{{item.content}}">
+          <image class="audio-icon" src="/image/play.png"></image>
+          <text>播放语音</text>
+        </view>
+      </view>
+
+      <!-- 用户头像 -->
+      <image wx:if="{{item.role === 'user'}}" class="avatar user-avatar" src="/image/user.png"></image>
+    </view>
+  </scroll-view>
+
+  <!-- 底部输入区域 -->
+  <view class="input-area">
+    <!-- 语音输入按钮 -->
+    <view class="voice-btn" bindtap="toggleVoiceInput">
+      <image class="voice-icon" src="{{isRecording ? '/image/stop.png' : '/image/mic.png'}}"></image>
+    </view>
+
+    <!-- 文字输入框 -->
+    <input class="message-input" 
+           value="{{inputText}}" 
+           bindinput="onInputChange" 
+           placeholder="输入您的问题..." 
+           confirm-type="send"
+           bindconfirm="sendMessage"
+           adjust-position="{{false}}"
+    />
+
+    <!-- 发送按钮 -->
+    <view class="send-btn" bindtap="sendMessage">
+      <text class="send-text">发送</text>
+    </view>
+  </view>
+
+  <!-- 录音中提示 -->
+  <view class="recording-tip" wx:if="{{isRecording}}">
+    <view class="recording-box">
+      <view class="recording-dot"></view>
+      <text>正在录音...</text>
+      <text class="recording-time">{{recordingTime}}s</text>
+    </view>
+  </view>
+</view>

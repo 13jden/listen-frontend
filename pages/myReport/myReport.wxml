@@ -1,0 +1,87 @@
+<view class="container">
+  <!-- 顶部大卡片 -->
+  <view class="header-card">
+    <view class="header-top">
+      <view class="header-info">
+        <text class="header-title">总体听力报告</text>
+        <text class="header-subtitle">基于 {{testCount}} 次测试的综合分析</text>
+      </view>
+      <view class="header-badge">
+        <text class="badge-text">健康</text>
+      </view>
+    </view>
+    
+    <view class="score-display">
+      <view class="score-circle">
+        <text class="score-num">{{avgScore}}</text>
+        <text class="score-unit">分</text>
+      </view>
+      <view class="score-label">平均得分</view>
+    </view>
+  </view>
+
+  <!-- 整体分析 -->
+  <view class="section">
+    <view class="section-title">整体分析</view>
+    <view class="analysis-grid">
+      <view class="analysis-card">
+        <text class="analysis-num">{{testCount}}</text>
+        <text class="analysis-label">测试次数</text>
+      </view>
+      <view class="analysis-card">
+        <text class="analysis-num">{{avgScore}}</text>
+        <text class="analysis-label">平均得分</text>
+      </view>
+      <view class="analysis-card">
+        <text class="analysis-num good">良好</text>
+        <text class="analysis-label">听力水平</text>
+      </view>
+      <view class="analysis-card">
+        <text class="analysis-num">稳定</text>
+        <text class="analysis-label">听力趋势</text>
+      </view>
+    </view>
+    <view class="analysis-summary">
+      <text>您的听力整体表现良好，保持规律的听力测试有助于监测听力变化。建议继续关注用耳健康，避免长时间暴露在噪音环境中。</text>
+    </view>
+  </view>
+
+  <!-- 听力趋势 -->
+  <view class="section">
+    <view class="section-title">听力趋势</view>
+    <view class="trend-card">
+      <view class="trend-chart">
+        <canvas canvas-id="trendCanvas" class="canvas" disable-scroll="true" style="width: 100%; height: 200px;"></canvas>
+      </view>
+      <view class="trend-footer">
+        <view class="trend-info">
+          <text class="trend-count">共 {{testCount}} 次测试</text>
+          <text class="trend-status">总体趋势向好</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 健康建议 -->
+  <view class="section">
+    <view class="section-title">健康建议</view>
+    <view class="advice-list">
+      <view class="advice-item" wx:for="{{healthAdvices}}" wx:key="index">
+        <view class="advice-num">{{index + 1}}</view>
+        <text class="advice-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <button class="action-btn consult" bindtap="goToConsult">
+      <image class="btn-icon" src="/image/chat.png"></image>
+      <text>一键咨询</text>
+    </button>
+    <button class="action-btn share" bindtap="shareReport">
+      <image class="btn-icon" src="/image/share.png"></image>
+      <text>分享报告</text>
+    </button>
+  </view>
+</view>

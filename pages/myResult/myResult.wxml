@@ -20,6 +20,15 @@
   </view>
 </view>
 
+<view class="overall-report-btn" bindtap="viewOverallReport">
+  <image src="/image/consult.png" class="report-icon"></image>
+  <view class="report-text">
+    <text class="report-title">查看总体报告</text>
+    <text class="report-desc">了解您的听力健康趋势</text>
+  </view>
+  <text class="report-arrow">›</text>
+</view>
+
 <view class="test-title">
   测试记录
 </view>

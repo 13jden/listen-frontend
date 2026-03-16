@@ -1,148 +1,219 @@
 import { getTestDetail } from '../../api/test';
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     test: [],
     questions: [],
-    score:1,
+    score: 0,
+    correctCount: 0,
+    wrongCount: 0,
+    accuracyRate: 0,
+    scoreLevel: {
+      type: 'good',
+      title: '表现良好',
+      desc: '您的听力状况总体不错，请继续保持！',
+      levelName: '良好'
+    },
+    healthAdvices: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
+    this.calculateScoreLevel();
+    this.setHealthAdvices();
+
     const testId = options.testId;
     if (testId == null) {
       const test = wx.getStorageSync('MyTest');
       const user = wx.getStorageSync('user');
-      user.score = test.avgScore;
-      user.recentTestDate =  this.formatDate(test.endTime);
-      const score = test.avgScore;
-      this.getDetail(test.id);
-      this.setData({
-        score: score
-      });
-      wx.setStorageSync('user', user);
-      // 查找 index 页面实例
-    const pages = getCurrentPages();
-    pages.forEach(page => console.log(page.route));
-    const indexPage = pages.find((page) => page.route === 'pages/index/index');
-    const homePage = pages.find((page) => page.route === 'pages/home/home');
-    if (indexPage) {
-      // 更新 index 页面的数据
-      console.log("更新index");
-      indexPage.setData({ user: user });
-    }
-    if(homePage){
-      console.log("更新home");
-      homePage.setData({ date: user.recentTestDate });
-    }
+      const score = Math.round(test.avgScore);
 
+      this.getDetail(test.id);
+      this.setData({ score: score });
+
+      user.score = score;
+      user.recentTestDate = this.formatDate(test.endTime);
+      wx.setStorageSync('user', user);
+
+      const pages = getCurrentPages();
+      const indexPage = pages.find((page) => page.route === 'pages/index/index');
+      const homePage = pages.find((page) => page.route === 'pages/home/home');
+
+      if (indexPage) {
+        indexPage.setData({ user: user });
+      }
+      if (homePage) {
+        homePage.setData({ date: user.recentTestDate });
+      }
     } else {
       const score = wx.getStorageSync('score');
-      this.setData({
-        score: score
-      });
-      console.log(this.data.score);
-      // 如果 testId 不为空，则调用 getDetail 方法获取数据
+      this.setData({ score: Math.round(score) });
       this.getDetail(testId);
     }
   },
 
-  /**
-   * 获取测试详情
-   */
+  onShow() {
+    this.calculateScoreLevel();
+  },
+
+  calculateScoreLevel() {
+    const score = this.data.score;
+    let level = {};
+
+    if (score >= 90) {
+      level = {
+        type: 'excellent',
+        title: '听力优秀',
+        desc: '您的听力状况非常棒！继续保持良好的生活习惯。',
+        levelName: '优秀'
+      };
+    } else if (score >= 75) {
+      level = {
+        type: 'good',
+        title: '表现良好',
+        desc: '您的听力状况总体不错，请继续保持！',
+        levelName: '良好'
+      };
+    } else if (score >= 60) {
+      level = {
+        type: 'medium',
+        title: '听力一般',
+        desc: '建议您关注听力健康，必要时进行专业检查。',
+        levelName: '一般'
+      };
+    } else {
+      level = {
+        type: 'poor',
+        title: '需要关注',
+        desc: '建议您尽快进行专业听力检查，及早干预。',
+        levelName: '较差'
+      };
+    }
+
+    this.setData({ scoreLevel: level });
+  },
+
+  setHealthAdvices() {
+    const score = this.data.score;
+    let advices = [];
+
+    if (score >= 90) {
+      advices = [
+        '继续保持良好的生活习惯',
+        '定期进行听力检查，关注听力变化',
+        '避免长时间接触噪音环境',
+        '保持充足的睡眠和营养'
+      ];
+    } else if (score >= 75) {
+      advices = [
+        '建议每半年进行一次听力检查',
+        '避免长时间使用耳机，音量不超过60%',
+        '保持耳道清洁，但不要过度清理',
+        '出现不适及时就医'
+      ];
+    } else if (score >= 60) {
+      advices = [
+        '建议进行更全面的听力检查',
+        '减少在噪音环境中的时间',
+        '考虑使用耳塞保护听力',
+        '咨询专业医生，了解干预方案'
+      ];
+    } else {
+      advices = [
+        '建议尽快进行专业听力检查',
+        '避免接触噪音，保护现有听力',
+        '咨询医生，了解治疗方案',
+        '定期监测听力变化'
+      ];
+    }
+
+    this.setData({ healthAdvices: advices });
+  },
+
   getDetail(testId) {
     getTestDetail(testId).then(res => {
-      console.log(res);
-      if (res.code==1) {
+      if (res.code == 1) {
+        const questions = res.data || [];
+        const correctCount = questions.filter(q => q.score >= 10).length;
+        const wrongCount = questions.filter(q => q.score < 10).length;
+        const accuracyRate = questions.length ? Math.round((correctCount / questions.length) * 100) : 0;
+
         this.setData({
-          test: wx.getStorageSync('MyTest'),
-          questions: res.data
+          questions: questions,
+          correctCount: correctCount,
+          wrongCount: wrongCount,
+          accuracyRate: accuracyRate
         });
-        wx.setStorageSync('questionsResult', this.data.questions);
-      } else {
-        wx.showToast({
-          title: '获取数据失败',
-          icon: 'none'
-        });
+
+        this.calculateScoreLevel();
+        this.setHealthAdvices();
       }
     }).catch(err => {
       console.error('获取数据失败', err);
-      wx.showToast({
-        title: '获取数据失败',
-        icon: 'none'
-      });
     });
   },
+
   formatDate(dateString) {
+    if (!dateString) return '';
     const date = new Date(dateString);
-  
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从 0 开始，需要加 1
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-  
     return `${year}年${month}月${day}日`;
   },
+
   navigateToQuestion(event) {
-    // 获取点击的 item.index
     const index = event.currentTarget.dataset.index;
-    console.log(index);
-    // 跳转到 question 页面，并传递 index 参数
     wx.navigateTo({
       url: `/pages/queastion/queastion?index=${index}`
     });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
+  goToMyReport() {
+    const testId = this.data.test?.id || '';
+    wx.navigateTo({
+      url: `/pages/myReport/myReport?testId=${testId}`
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  goToAIChat() {
+    const testId = this.data.test?.id || '';
+    const reportDate = this.formatDate(new Date());
+    wx.navigateTo({
+      url: `/pages/aiChat/aiChat?reportId=${testId}&reportDate=${encodeURIComponent(reportDate)}`
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  shareResult() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  retryTest() {
+    wx.redirectTo({
+      url: '/pages/listen/listen'
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  goHome() {
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage() {
+    return {
+      title: `我的听力测试得分：${this.data.score}分`,
+      path: '/pages/result/result',
+      imageUrl: '/image/share-result.png'
+    };
+  },
 
+  onShareTimeline() {
+    return {
+      title: `我的听力测试得分：${this.data.score}分`,
+      query: 'testId=' + (this.data.test?.id || '')
+    };
   }
 });

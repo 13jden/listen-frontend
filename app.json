@@ -9,7 +9,9 @@
     "pages/myResult/myResult",
     "pages/queastion/queastion",
     "pages/pre/pre",
-    "pages/explain/explain"
+    "pages/explain/explain",
+    "pages/aiChat/aiChat",
+    "pages/myReport/myReport"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

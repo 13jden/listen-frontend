@@ -7,23 +7,45 @@ Page({
   data: {
     questions:[],
     currentIndex:0,
-    currentQuestion:{}
+    currentQuestion:{},
+    errorAnalysis: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const index = options.index-1;
+    const index = options.index - 1;
     const questions = wx.getStorageSync('questionsResult');
+
+    // 添加空值检查
+    if (!questions || !questions[index]) {
+      console.log('暂无测试数据');
+      this.setData({
+        errorAnalysis: [
+          { tag: '暂无数据', content: '暂无该题目的测试数据，请先完成测试。' }
+        ]
+      });
+      return;
+    }
+
     const currentQuestion = questions[index];
     console.log(index);
-    questions[index].testTime= this.formatTime(questions[index].testTime);
+    questions[index].testTime = this.formatTime(questions[index].testTime);
     // 更新页面数据
     this.setData({
       questions: questions,
       currentIndex: index,
-      currentQuestion: currentQuestion
+      currentQuestion: currentQuestion,
+      // 写死的错因分析数据
+      errorAnalysis: [
+        { tag: '发音相似', content: '在音频中"花"和"瓜"的发音比较相似，容易混淆。' },
+        { tag: '连读问题', content: '该句存在连读现象，可能是识别错误的原因。' },
+        { tag: '环境噪音', content: '测试环境可能存在背景噪音，影响语音识别准确性。' },
+        { tag: '语速过快', content: '您的朗读语速偏快，可能导致部分音节不够清晰。' },
+        { tag: '发音不标准', content: '部分字词的发音存在轻微偏差，建议加强练习。' },
+        { tag: '发音模糊', content: '某些辅音发音不够清晰，建议放慢语速。' }
+      ]
     });
   },
   

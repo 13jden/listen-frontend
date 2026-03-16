@@ -1,150 +1,245 @@
-.container {
-  padding: 20px;
-  background-color: #f5f5f5;
-  min-height: 80vh;
+page {
+  background-color: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.header {
+.container {
+  padding: 24rpx;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+  width:100%;
+}
+
+/* 顶部信息卡片 */
+.header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
+  border-radius: 24rpx;
+  padding: 40rpx 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 12rpx 40rpx rgba(24, 144, 255, 0.35);
+   width:90%;
+}
+
+.header-left {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #edf3ff;
-  width: 98%;
-  margin-top: 10rpx;
-  height: 270rpx;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.score {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #2b7fff;
-  width: 150rpx;
-  height: 150rpx;
-  font-size: 32px;
-  border-radius: 50%;
+.question-num {
+  font-size: 40rpx;
   font-weight: bold;
-  color: white;
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 12rpx;
 }
 
 .test-time {
-  font-size: 16px;
-  margin-bottom: 10rpx;
-  color: #7f8c8d;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.record-section {
-  margin-bottom: 10px;
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 98%;
+.score-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140rpx;
+  height: 140rpx;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
 }
 
-.title {
-  font-size: 18px;
+.score-value {
+  font-size: 48rpx;
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #2c3e50;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 4rpx;
+  
+}
+
+/* 音频对比区域 */
+.audio-section {
+  margin-bottom: 24rpx;
+  margin-top:20rpx;
+}
+
+.audio-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  height:90rpx;
+  width:600rpx;
+}
+
+.audio-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.audio-icon.standard {
+  background: linear-gradient(135deg, #52c41a, #73d13d);
+}
+
+.audio-icon.user {
+  background: linear-gradient(135deg, #faad14, #ffc53d);
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
 }
 
 .audio-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex:1;
-  height: 180rpx;
-}
-audio{
-  width: 600rpx;
+  height: 100rpx;
 }
 
-.text-section1,.text-section2 {
-  margin-top: 10px;
-  padding: 15px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
+audio {
   width: 100%;
-  height: 100rpx;
-  justify-content: center;
 }
-.text-section1{
-  background-color: #f4f8ff;
+
+/* 文本对比区域 */
+.text-section {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+   width:90%;
+  height:150rpx;
+}
+
+.text-section.correct {
+  border-left: 8rpx solid #52c41a;
+}
+
+.text-section.user {
+  border-left: 8rpx solid #faad14;
+}
+
+.text-header {
+  margin-bottom: 16rpx;
 }
 
 .text-title {
-  font-size: 18px;
+  font-size: 30rpx;
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #2c3e50;
+  color: #333;
 }
 
-.correct-text, .user-text {
-  font-size: 14px;
-  color: #34495e;
-  line-height: 1.6;
+.text-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
   white-space: pre-wrap;
-  padding-left: 20rpx;
 }
 
-.button-section {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+/* 结果分析 */
+.analysis-section {
+  margin-bottom: 24rpx;
+  width:100%;
 }
 
-.primary-button, .secondary-button {
-  flex: 1;
-  margin: 0 10px;
-  padding: 12px;
-  font-size: 16px;
+.section-title {
+  font-size: 34rpx;
   font-weight: bold;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 8rpx;
 }
 
-.primary-button {
-  background-color: #3498db;
-  color: #ffffff;
-}
-
-.primary-button:hover {
-  background-color: #2980b9;
-}
-
-.back{
-  border-radius: 20rpx;
-  /* background-color: rgba(44, 127, 255, 0.9); */
-  background-color: #2c7fff;
-  color: #fff;
-}
-.next{
-  border-radius: 20rpx;
-  /* background-color: rgba(44, 127, 255, 0.9); */
-  background-color: #2c7fff;
-  color: #fff;
-}
-
-.navigation {
+.analysis-list {
   display: flex;
-  position: relative;
-  bottom: -10rpx;
-  justify-content: space-between;
-  width: 90%;
-  margin-bottom: 20px;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.analysis-tag {
+  background: linear-gradient(135deg, #ff7875, #ffa39e);
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.analysis-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 导航按钮 */
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 20rpx 24rpx;
+  background-color: #ffffff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+
+.nav-btn {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  border: none;
+  display: flex;
   align-items: center;
-  margin-top: 20rpx;  
+  justify-content: center;
+}
+
+.nav-btn.prev {
+  background-color: #ffffff;
+  color: #666;
+  margin-right: 20rpx;
+  border: 2rpx solid #d9d9d9;
+}
+
+.nav-btn.next {
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
+  color: #ffffff;
+  box-shadow: 0 8rpx 20rpx rgba(24, 144, 255, 0.35);
+}
+
+.nav-btn[disabled] {
+  opacity: 0.5;
 }

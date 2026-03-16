@@ -71,3 +71,42 @@
   color: #222;
   margin: 30rpx;
 }
+
+.overall-report-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 30rpx;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  background-color: #fff8e6;
+}
+
+.report-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+}
+
+.report-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.report-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+.report-arrow {
+  font-size: 40rpx;
+  color: #999;
+}

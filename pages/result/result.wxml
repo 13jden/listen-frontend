@@ -1,23 +1,118 @@
 <view class="container">
-  <!-- 顶部：总体成绩 -->
-  <view class="header">
-    <view class="total-score">
-      <text class="score-text">总体成绩</text>
-      <text class="score-value">{{score}}</text>
+  <!-- 顶部总体反馈区域 -->
+  <view class="header-feedback">
+    <view class="feedback-icon">
+      <image wx:if="{{scoreLevel.type === 'excellent'}}" src="/image/excellent.png" class="level-img"></image>
+      <image wx:elif="{{scoreLevel.type === 'good'}}" src="/image/good.png" class="level-img"></image>
+      <image wx:elif="{{scoreLevel.type === 'medium'}}" src="/image/medium.png" class="level-img"></image>
+      <image wx:else src="/image/poor.png" class="level-img"></image>
+    </view>
+    <view class="feedback-title">{{scoreLevel.title}}</view>
+    <view class="feedback-desc">{{scoreLevel.desc}}</view>
+  </view>
+
+  <!-- 分数展示卡片 -->
+  <view class="score-card">
+    <view class="score-main">
+      <view class="score-circle-large">
+        <text class="score-number">{{score}}</text>
+        <text class="score-label">分</text>
+      </view>
+      <view class="score-info">
+        <view class="score-item">
+          <text class="info-label">正确</text>
+          <text class="info-value correct">{{correctCount}}题</text>
+        </view>
+        <view class="score-item">
+          <text class="info-label">错误</text>
+          <text class="info-value wrong">{{wrongCount}}题</text>
+        </view>
+        <view class="score-item">
+          <text class="info-label">正确率</text>
+          <text class="info-value">{{accuracyRate}}%</text>
+        </view>
+      </view>
     </view>
   </view>
 
-  <!-- 底部：每道题的分数 -->
-  <view class="question-grid">
-    <view 
-      wx:for="{{questions}}" 
-      wx:key="index" 
-      bindtap="navigateToQuestion" 
-      data-index="{{item.index}}"
-      class="question-item"
-    >
-      <text class="question-index">第{{item.index}}题</text>
-      <text class="question-score">{{item.score}}分</text>
+  <!-- 听力等级 -->
+  <view class="level-card">
+    <view class="level-header">
+      <text class="card-title">听力评估</text>
     </view>
+    <view class="level-content">
+      <view class="level-indicator {{scoreLevel.type}}">
+        <view class="level-dot"></view>
+        <text class="level-text">{{scoreLevel.levelName}}</text>
+      </view>
+      <view class="level-bar">
+        <view class="bar-segment poor" style="width: 25%">
+          <text>0-25</text>
+        </view>
+        <view class="bar-segment medium" style="width: 25%">
+          <text>26-50</text>
+        </view>
+        <view class="bar-segment good" style="width: 25%">
+          <text>51-75</text>
+        </view>
+        <view class="bar-segment excellent" style="width: 25%">
+          <text>76-100</text>
+        </view>
+        <view class="bar-progress {{scoreLevel.type}}" style="left: {{score - 25}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速操作 -->
+  <view class="action-cards">
+    <view class="action-card" bindtap="goToMyReport">
+      <image class="action-icon" src="/image/report.png"></image>
+      <text class="action-text">查看详细报告</text>
+      <text class="action-arrow">›</text>
+    </view>
+    <view class="action-card" bindtap="goToAIChat">
+      <image class="action-icon" src="/image/ai-chat.png"></image>
+      <text class="action-text">咨询AI医生</text>
+      <text class="action-arrow">›</text>
+    </view>
+    <view class="action-card" bindtap="shareResult">
+      <image class="action-icon" src="/image/share.png"></image>
+      <text class="action-text">分享结果</text>
+      <text class="action-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 每道题的分数 -->
+  <view class="question-section">
+    <view class="section-title">答题详情</view>
+    <view class="question-grid">
+      <view
+        wx:for="{{questions}}"
+        wx:key="index"
+        bindtap="navigateToQuestion"
+        data-index="{{item.index}}"
+        class="question-item {{item.score >= 10 ? 'correct' : 'wrong'}}"
+      >
+        <text class="question-index">第{{item.index}}题</text>
+        <text class="question-score">{{item.score}}分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 健康建议 -->
+  <view class="advice-section" wx:if="{{healthAdvices.length}}">
+    <view class="section-title">健康建议</view>
+    <view class="advice-list">
+      <view class="advice-item" wx:for="{{healthAdvices}}" wx:key="index">
+        <text class="advice-num">{{index + 1}}</text>
+        <text class="advice-content">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-actions">
+    <button class="btn-retry" bindtap="retryTest">再次测试</button>
+    <button class="btn-home" bindtap="goHome">返回首页</button>
   </view>
 </view>

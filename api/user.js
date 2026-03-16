@@ -1,8 +1,8 @@
 import request from './index'; // 引入封装的请求方法
 
-// const BASE_URL = 'http://112.124.60.182:8082/user';
+// const BASE_URL = 'http://115.190.53.97:8081/user';
 // const BASE_URL = 'https://aidatech.cn/wx/user';
-const BASE_URL = 'http://localhost:8082/user';
+const BASE_URL = 'http://localhost:8081/user';
 
 /**
  * 用户注册

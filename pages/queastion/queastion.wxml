@@ -1,37 +1,68 @@
 <view class="container">
-  <view class="header">
-    <text class="test-time">第{{currentQuestion.index}}题</text>
-  
-    <text class="score">{{currentQuestion.score}}</text>
-    <text class="test-time">测试完成时间：{{currentQuestion.testTime}}</text>
-  </view>
-  
-  <view class="record-section">
-    <text class="title">标准录音</text>
-    <view class="audio-box">
-      <audio src="{{currentQuestion.audioPath}}" poster="/image/admin.png" name="测试标准音频" controls author=""></audio>
+  <!-- 顶部信息卡片 -->
+  <view class="header-card">
+    <view class="header-left">
+      <text class="question-num">第{{currentQuestion.index}}题</text>
+      <text class="test-time">测试时间：{{currentQuestion.testTime}}</text>
     </view>
-  </view>
-  
-  <view class="record-section">
-    <text class="title">你的录音</text>
-    <view class="audio-box">
-      <audio src="{{currentQuestion.testAudioPath}}" controls poster="/image/user_poster.png" name="用户音频" author=""></audio>
+    <view class="score-circle">
+      <text class="score-value">{{currentQuestion.score}}</text>
+      <text class="score-label">分</text>
     </view>
-  </view>
-  
-  <view class="text-section1">
-    <text class="text-title">正确文本:</text>
-    <text class="correct-text">{{currentQuestion.testText}}</text>
-  </view>
-  
-  <view class="text-section2">
-    <text class="text-title">您的语音识别文本:</text>
-    <text class="user-text">{{currentQuestion.userText}}</text>
   </view>
 
+  <!-- 音频对比区域 -->
+  <view class="audio-section">
+    <view class="audio-card">
+      <view class="card-header">
+        <view class="audio-icon standard"></view>
+        <text class="card-title">标准录音</text>
+      </view>
+      <view class="audio-box">
+        <audio src="{{currentQuestion.audioPath}}" poster="/image/admin.png" name="标准音频" controls author=""></audio>
+      </view>
+    </view>
+
+    <view class="audio-card">
+      <view class="card-header">
+        <view class="audio-icon user"></view>
+        <text class="card-title">你的录音</text>
+      </view>
+      <view class="audio-box">
+        <audio src="{{currentQuestion.testAudioPath}}" controls poster="/image/user_poster.png" name="用户音频" author=""></audio>
+      </view>
+    </view>
+  </view>
+
+  <!-- 文本对比 -->
+  <view class="text-section correct">
+    <view class="text-header">
+      <text class="text-title">正确文本</text>
+    </view>
+    <text class="text-content">{{currentQuestion.testText}}</text>
+  </view>
+
+  <view class="text-section user">
+    <view class="text-header">
+      <text class="text-title">您的识别文本</text>
+    </view>
+    <text class="text-content">{{currentQuestion.userText}}</text>
+  </view>
+
+  <!-- 结果分析 -->
+  <view class="analysis-section">
+    <view class="section-title">结果分析</view>
+    <view class="analysis-list">
+      <view class="analysis-item" wx:for="{{errorAnalysis}}" wx:key="index">
+        <view class="analysis-tag">{{item.tag}}</view>
+        <text class="analysis-text">{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 导航按钮 -->
   <view class="navigation">
-    <button class="back" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
-    <button class="next" bindtap="nextQuestion" disabled="{{currentIndex === 32}}">下一题</button>
+    <button class="nav-btn prev" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
+    <button class="nav-btn next" bindtap="nextQuestion" disabled="{{currentIndex === 32}}">下一题</button>
   </view>
 </view>

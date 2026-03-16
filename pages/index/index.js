@@ -21,6 +21,24 @@ Page({
       url: '/pages/myResult/myResult',
     })
   },
+
+  goToAIChat() {
+    // 获取最新测试信息
+    const user = wx.getStorageSync('user') || {};
+    const test = wx.getStorageSync('MyTest') || {};
+
+    let reportId = '';
+    let reportDate = '';
+
+    if (test && test.id) {
+      reportId = test.id;
+      reportDate = user.recentTestDate || '';
+    }
+
+    wx.navigateTo({
+      url: `/pages/aiChat/aiChat?reportId=${reportId}&reportDate=${encodeURIComponent(reportDate)}`
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

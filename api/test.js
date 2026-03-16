@@ -1,8 +1,8 @@
 import request from './index'; // 引入请求封装
 
-// const BASE_URL = 'http://112.124.60.182:8082';
+// const BASE_URL = 'http://115.190.53.97:8081';
 // const BASE_URL = 'https://aidatech.cn/wx';
-const BASE_URL = 'http://localhost:8082';
+const BASE_URL = 'http://localhost:8081';
 
 // 封装 getTest 请求
 export const getTest = (userId, num, isContinue, time) => {
@@ -85,4 +85,14 @@ export const OneUserAudioUpload = (testAudio, testDetailId) => {
       },
     });
   });
+};
+
+// 生成总体报告
+export const generateOverallReport = (userId) => {
+  return request(`${BASE_URL}/report/generateOverall`, 'GET', { userId });
+};
+
+// 获取总体报告
+export const getOverallReport = (userId) => {
+  return request(`${BASE_URL}/report/getOverall`, 'GET', { userId });
 };

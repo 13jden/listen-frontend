@@ -8,8 +8,8 @@ Page({
   data: {
     testList: [], // 测试列表
     user: null, // 用户信息
-    times:0,
-    avgScore:0
+    times: 0,
+    avgScore: 0,
   },
 
   /**
@@ -98,6 +98,15 @@ Page({
     const hours = String(date.getHours()).padStart(2, '0'); // 补足两位
     const minutes = String(date.getMinutes()).padStart(2, '0'); // 补足两位
     return `${year}年${month}月${day}日${hours}:${minutes}`;
+  },
+
+  /**
+   * 查看总体报告
+   */
+  viewOverallReport() {
+    wx.navigateTo({
+      url: '/pages/myReport/myReport?type=overall'
+    });
   },
 
   /**
