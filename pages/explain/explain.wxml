@@ -62,9 +62,42 @@
     </view>
   </view>  
   <view class="button-back-2">
-    <view class="recording-result" hidden="{{score==0}}">{{score}}</view>
-    <view class="text-2 {{currentStep === 3 ? 'active-text-2' : ''}}">本题得分</view>
-    <view class="button-text-2" hidden="{{score!=0}}">复述后显示分数</view>
+    <!-- 步骤3: 查看结果/重新提交 -->
+    <view class="result-section" hidden="{{currentStep !== 3}}">
+      <view class="audio-preview" hidden="{{!tempFilePath}}">
+        <text class="preview-label">点击播放您的录音：</text>
+        <image 
+          src="{{userAudioPlayed ? '/image/stop.png' : '/image/audio.png'}}" 
+          mode="aspectFit" 
+          class="play-button-small"
+          bindtap="playAudio"
+        />
+      </view>
+      
+      <!-- 已提交，显示成功上传 -->
+      <block wx:if="{{hasSubmitted}}">
+        <view class="upload-success-text">上传成功</view>
+        <view class="text-2">后台将异步批改</view>
+        <button class="re-record-btn" bindtap="reRecord">重新录音</button>
+      </block>
+      
+      <!-- 未提交，显示提交按钮 -->
+      <block wx:if="{{!hasSubmitted}}">
+        <view class="text-2 {{currentStep === 3 ? 'active-text-2' : ''}}">
+          {{isSubmitting ? '提交中...' : '录音已完成，点击提交'}}
+        </view>
+        <button class="submit-btn" bindtap="submitRecording" loading="{{isSubmitting}}">
+          提交批改
+        </button>
+      </block>
+    </view>
+    
+    <!-- 步骤1和2: 提示文字 -->
+    <view class="hint-text" hidden="{{currentStep === 3}}">
+      <view class="recording-result" hidden="{{score==0}}">{{score}}</view>
+      <view class="text-2 {{currentStep === 3 ? 'active-text-2' : ''}}">本题得分</view>
+      <view class="button-text-2" hidden="{{score!=0}}">复述后显示分数</view>
+    </view>
   </view>
   <view class="finish" hidden="{{!(currentStep===3)}}" bind:tap="goListen">
       正式测试

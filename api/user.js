@@ -11,15 +11,17 @@ const BASE_URL = 'http://localhost:8081/user';
  * @param {number} hospitalId 医院 ID
  * @param {string} number 电话号码
  * @param {string} medicalId 医疗 ID
+ * @param {number} age 年龄
  * @returns {Promise} 返回注册结果
  */
-export const register = (openId, name, hospitalId, number, medicalId) => {
+export const register = (openId, name, hospitalId, number, medicalId, age) => {
   return request(`${BASE_URL}/register`, 'POST', {
     openId,
     name,
     hospitalId,
     number,
-    medicalId
+    medicalId,
+    age
   });
 };
 

@@ -14,7 +14,10 @@ Page({
     user:[],
     isRecordingValid: false, // 录音是否有效
     recordStartTime: 0,
-    audioIng:false
+    audioIng:false,
+    hasSubmitted: false, // 是否已提交
+    isSubmitting: false, // 是否正在提交
+    userAudioPlayed: false // 用户音频是否正在播放
   },
 
   onLoad: function () { 
@@ -32,13 +35,10 @@ Page({
     // 监听录音结束事件
     this.recorderManager.onStop((res) => {
       console.log("停止录音...", res.tempFilePath);
-      this.setData({ tempFilePath: res.tempFilePath }, () => {
-        // 只有录音有效时才上传
-        if (this.data.isRecordingValid) {
-          this.uploadRecording();
-        } else {
-          console.log("录音无效，不上传");
-        }
+      this.setData({ 
+        tempFilePath: res.tempFilePath,
+        hasSubmitted: false,
+        score: 0
       });
     });
     this.recorderManager.onError((res) => {
@@ -86,49 +86,70 @@ wx.authorize({
 
 // 播放音频
 playAudio: function () {
-  const { audioContext,  isPlaying } = this.data;
-  const currentQuestion = "http://112.124.60.182/audio/X2DEQ88lgR.wav";
+  const { audioContext, isPlaying, currentStep, tempFilePath, userAudioPlayed } = this.data;
+  
+  // 步骤3播放用户音频
+  if (currentStep === 3 && tempFilePath) {
+    if (userAudioPlayed) {
+      audioContext.pause();
+      this.setData({ userAudioPlayed: false });
+    } else {
+      audioContext.src = tempFilePath;
+      audioContext.play();
+      this.setData({ userAudioPlayed: true });
+    }
+    
+    audioContext.onPlay(() => {
+      this.setData({ userAudioPlayed: true });
+    });
+    
+    audioContext.onEnded(() => {
+      this.setData({ userAudioPlayed: false });
+    });
+    
+    audioContext.onError((err) => {
+      console.error("音频播放失败", err);
+      this.setData({ userAudioPlayed: false });
+    });
+    return;
+  }
+  
+  // 步骤1播放标准音频
   console.log("点击播放/暂停按钮");
   
   if (!isPlaying) {
-    // 如果当前没有播放，则开始播放
+    const currentQuestion = "http://112.124.60.182/audio/X2DEQ88lgR.wav";
     audioContext.src = currentQuestion;
     audioContext.play();
-    this.setData({ isPlaying: true }); // 设置播放状态为 true
+    this.setData({ isPlaying: true });
   } else {
-    // 如果当前正在播放，则暂停
     audioContext.pause();
-    this.setData({ isPlaying: false }); // 设置播放状态为 false
+    this.setData({ isPlaying: false });
   }
 
-  // 监听音频播放事件
   audioContext.onPlay(() => {
     console.log("音频开始播放");
-    this.setData({ isPlaying: true }); // 更新播放状态
+    this.setData({ isPlaying: true });
   });
 
-  // 监听音频暂停事件
   audioContext.onPause(() => {
     console.log("音频暂停");
-    this.setData({ isPlaying: false }); // 更新播放状态
+    this.setData({ isPlaying: false });
   });
 
-  // 监听音频结束事件
   audioContext.onEnded(() => {
     console.log("音频播放结束");
-    this.setData({ isPlaying: false }); // 更新播放状态
+    this.setData({ isPlaying: false });
     if(this.data.currentStep===1){
       this.setData({
         currentStep:2
       })
     }
-      
   });
 
-  // 监听音频播放错误事件
   audioContext.onError((err) => {
     console.error("音频播放失败", err);
-    this.setData({ isPlaying: false }); // 更新播放状态
+    this.setData({ isPlaying: false });
   });
 },
   goListen(){
@@ -142,41 +163,71 @@ playAudio: function () {
       url: '/pages/pre/pre',
     });
   },
-  // 上传录音
-  uploadRecording: function () {
-    const { tempFilePath, questions,currentIndex } = this.data;
+  // 提交录音进行批改
+  submitRecording: function () {
+    const { tempFilePath, isRecordingValid, isSubmitting } = this.data;
+    
     if (!tempFilePath) {
       wx.showToast({
-        title: '录音文件不存在',
+        title: '请先录音',
         icon: 'none',
       });
       return;
     }
 
+    if (!isRecordingValid) {
+      wx.showToast({
+        title: '录音时间太短',
+        icon: 'none',
+      });
+      return;
+    }
+    
+    if (isSubmitting) return;
+
+    this.setData({ isSubmitting: true, currentStep: 3 });
+
     wx.showLoading({
-      title: '上传中...',
+      title: '提交中...',
     });
 
-    console.log(tempFilePath);
     PreAudioUpload(tempFilePath)
       .then((result) => {
         wx.hideLoading();
         console.log(result.data);
-        const score = result.data;
-        this.setData({ score,currentStep:3 });
+        this.setData({ 
+          score: 0,
+          hasSubmitted: true,
+          isSubmitting: false,
+          uploadSuccess: true
+        });
         wx.showToast({
-          title: '上传成功',
+          title: '成功上传',
           icon: 'success',
         });
       })
       .catch((error) => {
         wx.hideLoading();
+        this.setData({ isSubmitting: false });
         wx.showToast({
-          title: error.message || '上传失败',
+          title: error.message || '提交失败',
           icon: 'none',
         });
       });
   },
+  
+  // 重新录音
+  reRecord: function () {
+    this.setData({
+      tempFilePath: '',
+      score: 0,
+      currentStep: 2,
+      hasSubmitted: false,
+      isSubmitting: false,
+      userAudioPlayed: false
+    });
+  },
+  
   // 上一题
   prevQuestion: function () {
     if (this.data.currentIndex > 0) {

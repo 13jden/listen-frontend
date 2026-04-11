@@ -10,6 +10,7 @@ Page({
     number: '', // 手机号
     name: '', // 姓名
     medicalId: '', // 医疗 ID
+    age: '', // 年龄
     openid: '', // 用户的 openid
     isRegistered: false, // 是否已注册
     selectedHospitalName: '请选择医院' // 当前选中的医院名称
@@ -139,9 +140,9 @@ Page({
    * 提交注册表单
    */
   onSubmitRegisterForm(e) {
-    const { openid, hospitalId, name, number, medicalId } = this.data;
+    const { openid, hospitalId, name, number, medicalId, age } = this.data;
     // 调用注册接口
-    register(openid, name, hospitalId, number, medicalId)
+    register(openid, name, hospitalId, number, medicalId, age)
       .then(res => {
         console.log('注册成功:', res);
         wx.showToast({
@@ -203,6 +204,15 @@ Page({
   onNameInput(e) {
     this.setData({
       name: e.detail.value
+    });
+  },
+
+  /**
+   * 输入年龄
+   */
+  onAgeInput(e) {
+    this.setData({
+      age: e.detail.value
     });
   },
 

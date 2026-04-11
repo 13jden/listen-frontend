@@ -250,3 +250,73 @@ page {
   font-size: 30rpx;
   margin-top: 30rpx;
 }
+
+/* 结果区域样式 */
+.result-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20rpx;
+}
+
+.audio-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.preview-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.play-button-small {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.submit-btn {
+  margin-top: 20rpx;
+  width: 80%;
+  height: 80rpx;
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
+  color: #ffffff;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.re-record-btn {
+  margin-top: 20rpx;
+  width: 80%;
+  height: 80rpx;
+  background-color: #ffffff;
+  color: #1890ff;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: 2rpx solid #1890ff;
+}
+
+.hint-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-success-text {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #52c41a;
+  margin-top: 30rpx;
+}

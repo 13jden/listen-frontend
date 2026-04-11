@@ -16,7 +16,9 @@ Page({
     user:[],
     currentStep: 1,
     isRecordingValid: false, // 录音是否有效
-    recordStartTime: 0
+    recordStartTime: 0,
+    userAudioPlayed: false, // 用户音频是否正在播放
+    userAudioContext: null // 用户音频播放器
   },
 
   onLoad: function () {
@@ -240,6 +242,44 @@ playAudio: function () {
   });
 },
 
+// 播放用户录音
+playUserAudio: function () {
+  const { userAudioContext, questions, currentIndex, userAudioPlayed, tempFilePath } = this.data;
+  const currentQuestion = questions[currentIndex];
+  
+  // 使用上传后的音频URL或本地临时文件
+  const audioSrc = currentQuestion.testAudioPath || tempFilePath;
+  if (!audioSrc) {
+    wx.showToast({ title: '暂无录音', icon: 'none' });
+    return;
+  }
+
+  // 初始化用户音频播放器
+  if (!userAudioContext) {
+    const newUserAudioContext = wx.createInnerAudioContext();
+    this.userAudioContext = newUserAudioContext;
+    
+    newUserAudioContext.onEnded(() => {
+      this.setData({ userAudioPlayed: false });
+    });
+    newUserAudioContext.onError((err) => {
+      console.error("用户音频播放失败", err);
+      this.setData({ userAudioPlayed: false });
+    });
+  }
+
+  if (!userAudioPlayed) {
+    // 开始播放
+    this.userAudioContext.src = audioSrc;
+    this.userAudioContext.play();
+    this.setData({ userAudioPlayed: true });
+  } else {
+    // 暂停播放
+    this.userAudioContext.pause();
+    this.setData({ userAudioPlayed: false });
+  }
+},
+
   // 上传录音
   uploadRecording: function () {
     const { tempFilePath, questions,currentIndex } = this.data;
@@ -288,21 +328,21 @@ playAudio: function () {
   prevQuestion: function () {
     const { questions , currentIndex } = this.data;
     if (this.data.currentIndex > 0) {
-      this.setData({ currentIndex: this.data.currentIndex - 1 });
+      this.setData({ 
+        currentIndex: this.data.currentIndex - 1,
+        userAudioPlayed: false
+      });
       this.updateProgress();
       if(questions[currentIndex-1].testAudioPath){
-        console.log(3);
         this.setData({
           currentStep:3
         })
       }
       else{
-        console.log(1);
         this.setData({
           currentStep:1
         })
       }
-        
     }
   },
 
@@ -310,7 +350,10 @@ playAudio: function () {
   nextQuestion: function () {
     const { questions , currentIndex } = this.data;
     if (this.data.currentIndex < 32) {
-      this.setData({ currentIndex: this.data.currentIndex + 1 });
+      this.setData({ 
+        currentIndex: this.data.currentIndex + 1,
+        userAudioPlayed: false
+      });
       this.updateProgress();
       if(questions[currentIndex+1].testAudioPath){
         this.setData({

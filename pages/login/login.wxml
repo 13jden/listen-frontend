@@ -48,6 +48,18 @@
           />
         </view>
 
+        <!-- 年龄 -->
+        <view class="form-item">
+          <text>年龄：</text>
+          <input
+            class="input"
+            placeholder="请输入年龄"
+            name="age"
+            type="number"
+            bindinput="onAgeInput"
+          />
+        </view>
+
         <!-- 医院选择 -->
         <view class="form-item">
           <text>医院：</text>

@@ -42,9 +42,18 @@
     </view>
   </view>  
   <view class="button-back-2" >
-    <view class="recording-result" hidden="{{!questions[currentIndex].testAudioPath}}">{{questions[currentIndex].score}}</view>
-    <view class="button-text {{currentStep === 3 ? 'active-text-2' : ''}}">本题得分</view>
-    <view class="button-text-2" hidden="{{questions[currentIndex].testAudioPath}}">复述后显示分数</view>
+    <!-- 用户录音播放区域 -->
+    <view class="recording-container" hidden="{{!questions[currentIndex].testAudioPath}}">
+      <image
+        src="{{userAudioPlayed ? '/image/stop.png' : '/image/audio.png'}}"
+        mode="aspectFit"
+        class="record"
+        bindtap="playUserAudio"
+      />
+      <view class="button-text">点击播放您的录音</view>
+    </view>
+    <!-- 未录音时的提示 -->
+    <view class="button-text" hidden="{{questions[currentIndex].testAudioPath}}">复述后点击播放您的录音</view>
   </view>
 
   <view class="navigation">
@@ -56,19 +65,10 @@
       {{currentIndex === num - 1 ? '提交答案' : '下一题'}}
     </button>
   </view>
-  <!-- <button
-    class="submit-button"
-    bindtap="submitAnswers"
-    wx:if="{{currentIndex === num-1}}"
-  >提交答案</button> -->
   <view class="textBox">
     测试说明
     <view class="text">1.点击播放按钮,仔细聆听测试音频</view>
     <view class="text">2.按下录音按钮,复述听到的内容，松开完成录音</view>
     <view class="text">3.系统将自动评估您的复述情况，给出分数</view>
   </view>
-
-
-  <!-- 提交按钮（仅在最后一题显示） -->
-
 </view>
